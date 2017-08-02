@@ -63,6 +63,6 @@ class ArduinoSNESController{
         bool isButtonUpX();
         bool isButtonUpL();
         bool isButtonUpR();
-}
+};
 
 #endif
