@@ -32,6 +32,18 @@ bool ArduinoSNESController::isButtonUp(int button){
 
 void ArduinoSNESController::update(){
     buttonsOld = buttons;
+
+    digitalWrite(latchPin, HIGH);
+    delayMicroseconds(12);
+    digitalWrite(latchPin, LOW);
+    delayMicroseconds(6);
+    for(int i = 0; i < 16; i++){
+        buttons &= ~(1 << i) | (~(digitalRead(dataPin)) << i);
+        digitalWrite(clockPin, HIGH);
+        delayMicroseconds(6);
+        digitalWrite(clockPin, LOW);
+        delayMicroseconds(6);
+    }
 }
 
 word ArduinoSNESController::getButtons(){
